@@ -15,8 +15,7 @@ public class DragLaunch : MonoBehaviour {
 	void Start () {
 		ball = GetComponent<Ball> ();
 	}
-	public void MoveStart (float amount)
-	{
+	public void MoveStart (float amount){
 		if (! ball.inPlay) {
 			ball.transform.Translate (new Vector3 (amount, 0, 0));
 		}
@@ -26,7 +25,6 @@ public class DragLaunch : MonoBehaviour {
 		//capture time & position of drag start
 		dragStart = Input.mousePosition;
 		startTime = Time.time;
-
 	}
 
 	public void DragEnd(){
@@ -38,9 +36,7 @@ public class DragLaunch : MonoBehaviour {
 		float launchSpeedX = (dragEnd.x - dragStart.x)/dragDuration;
 		float launchSpeedZ = (dragEnd.y - dragStart.y)/dragDuration;
 
-
 		Vector3 launchVelocity = new Vector3 (launchSpeedX, 0, launchSpeedZ);
-
 		ball.Launch (launchVelocity);
 	}
 }

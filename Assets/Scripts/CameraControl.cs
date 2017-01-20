@@ -9,19 +9,15 @@ public class CameraControl : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start () {		
 		offset = transform.position - ball.transform.position;
 	}
 	
 	// Update is called once per frame
-	void Update ()
-	{
-
+	void Update (){
 		if (ball.transform.position.z < 1600f) {
 			transform.position = ball.transform.position + offset;
 		}		
 	}
-
 
 }

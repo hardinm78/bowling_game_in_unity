@@ -4,30 +4,25 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour {
 
-	Rigidbody rigi;
-
-	AudioSource ballSound;
+	
 
 	public bool inPlay = false;
-
 	public Vector3 launchVelocity;
 
 	private Vector3 ballStartPos;
-
+	private Rigidbody rigi;
+	private AudioSource ballSound;
 
 
 	// Use this for initialization
 	void Start () {
 		ballStartPos = transform.position;
-
 		rigi = GetComponent<Rigidbody> ();
 		ballSound = GetComponent<AudioSource> ();
 		rigi.useGravity = false;
-
 	}
 
-	public void Launch (Vector3 velocity)
-	{
+	public void Launch (Vector3 velocity){
 		inPlay = true;
 		rigi.useGravity = true;
 		rigi.velocity = velocity;
@@ -40,7 +35,6 @@ public class Ball : MonoBehaviour {
 		rigi.velocity = Vector3.zero;
 		rigi.angularVelocity = Vector3.zero;
 		rigi.useGravity = false;
-
 
 	}
 

@@ -8,15 +8,12 @@ public class PinSetter : MonoBehaviour {
 
 	public int lastStandingCount = -1;
 	public Text standingDisplay;
-	public float distanceToRaise = 40f;
+	public GameObject pinSet;
 
 	private float lastChangeTime;	
 	private bool ballEnteredBox = false;
-
-
 	private Ball ball;
-
-	Pin[] pins;
+	private Pin[] pins;
 
 
 	// Use this for initialization
@@ -31,10 +28,10 @@ public class PinSetter : MonoBehaviour {
 		standingDisplay.text = CountStanding ().ToString ();
 
 		if (ballEnteredBox){
-			CheckStanding ();
+			UpdateStandingCountAndSettle ();
 		}
 	}
-	void CheckStanding(){
+	void UpdateStandingCountAndSettle(){
 		int currentStanding = CountStanding ();
 
 		if (currentStanding != lastStandingCount){
@@ -79,31 +76,24 @@ public class PinSetter : MonoBehaviour {
 
 	}
 
-	void OnTriggerExit(Collider other){
-
-		if (other.gameObject.tag == "Pin"){
-
-			Destroy (other.gameObject);
-		}
-
-
-	}
 
 
 	public void RaisePins(){
-		print("raising");
+		
 		foreach(Pin pin in pins){
 			if (pin.isStanding()){
-				pin.transform.Translate (new Vector3 (0 ,distanceToRaise,0), Space.World);
+				pin.Raise ();
 			}
 		}
 
 	}
 
 	public void LowerPins(){
-		print("lowering");
+		foreach(Pin pin in pins){
+			pin.Lower ();
+		}
 	}
 	public void RenewPins(){
-		print("renewing");
+		Instantiate (pinSet, new Vector3 (0, 40, 1829), Quaternion.identity);
 	}
 }
